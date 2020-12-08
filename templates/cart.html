@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block mystyle %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cart.css') }}"/>
+{% endblock %}
+{% block title %}Almond Cart{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center">
+    {% if quantity_total == 0 %}
+
+    <div class="card-body cart">
+        <div class="col-sm-12 empty-cart-cls text-center"><img
+                src="{{ url_for('static', filename='imgs/empty-cart.png') }}" width="130" height="130"
+                class="img-fluid mb-4 mr-3">
+            <h3><strong>Your Cart is Empty</strong></h3>
+            <h4>Add something to make me happy :)</h4> <a href="{{ url_for('viewproducts', page_num=1) }}"
+                                                          class="btn btn-primary cart-btn-transform m-3"
+                                                          data-abc="true">Continue Shopping</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-11 mx-auto">
+                <div class="row mt-5 gx-3">
+                    <!-- left side div -->
+                    <div class="col-md-12 col-lg-8 col-11 mx-auto main_cart mb-lg-0 mb-5 shadow">
+
+                        {% if quantity_total == 1 %}
+                        <h2 class="py-4 font-weight-bold">Cart ({{ quantity_total }} item)</h2>
+                        {% else %}
+                        <h2 class="py-4 font-weight-bold">Cart ({{ quantity_total }} items)</h2>
+                        {% endif %}
+                        {% for product in products %}
+                        <div class="card p-4">
+
+                            <div class="row">
+                                <!-- cart images div -->
+                                <div class="col-md-5 col-11 mx-auto bg-light d-flex justify-content-center align-items-center shadow product_img">
+                                    <img src="{{ url_for('static', filename = product.image) }}" class="img-fluid"
+                                         alt="cart img" width="100%"
+                                         height="100%">
+                                </div>
+
+
+                                <!-- cart product details -->
+                                <div class="col-md-7 col-11 mx-auto px-4 mt-2">
+                                    <div class="row">
+                                        <!-- product name  -->
+                                        <div class="col-6 card-title">
+                                            <h1 class="mb-4 product_name">{{ product.name }}</h1>
+                                            <p class="mb-2">
+                                                {% if product.description | length <= 50 %}
+                                                {{ product.description }}
+                                                {% else %}
+                                                {{ product.description[0: 50] }}...
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                        <!-- quantity inc dec -->
+                                        <div class="col-6">
+                                            <ul class="pagination justify-content-end set_quantity">
+                                                <h1 class="mb-4 product_name">Quantity: {{ product.quantity }}</h1>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <!-- //remover move and price -->
+                                    <div class="row my-4">
+                                        <div class="col-8 d-flex justify-content-between remove_wish">
+                                            <a href="{{ url_for('remove_from_cart', index=product['index']) }}">
+                                                <button type="button" class="btn btn-danger btn-xs">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div class="col-4 d-flex justify-content-end price_money">
+                                            <h5>&#x20B9; <span
+                                                    id="itemval">{{ product.quantity * product.price }}</span></h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <!-- right side div -->
+                    <div class="col-md-12 col-lg-4 col-11 mx-auto mt-lg-0 mt-md-5">
+                        <div class="right_side p-3 shadow bg-white">
+                            <h1 class="product_name mb-5 text-center">Current Cart Value</h1>
+                            <div class="price_indiv d-flex justify-content-between">
+                                <p>Product amount</p>
+                                <p>&#x20B9; <span id="product_total_amt">{{ grand_total }}</span></p>
+                            </div>
+                            <div class="price_indiv d-flex justify-content-between">
+                                <p>Shipping Charge</p>
+                                <p>&#x20B9; <span id="shipping_charge">
+                                    {% if grand_total > 100 %}
+                                    0
+                                    {% else %}
+                                    100
+                                    {% endif %}
+                                </span></p>
+                            </div>
+                            <hr/>
+                            <div class="total-amt d-flex justify-content-between font-weight-bold">
+                                <p>The total amount of (including TAX)</p>
+                                <p>&#x20B9; <span id="total_cart_amt">{{ grand_total_plus_shipping }}</span></p>
+                            </div>
+                            <div class="my-2"></div>
+                            <div class="panel-footer">
+                                <a href="{{ url_for('checkout') }}" class="btn btn-primary btn-sm">
+                                    Checkout <i class="fa fa-angle-double-right"></i>
+                                </a>
+                                <a href="{{ url_for('viewproducts', page_num=1) }}"
+                                   class="btn btn-secondary btn-sm pull-right">
+                                    <i class="fa fa-angle-double-left"></i> Continue Shopping
+                                </a>
+                            </div>
+                            <div class="my-2"></div>
+                            <div class="pt-4">
+                                <h5 class="mb-4">Expected delivery Within</h5>
+                                <p>4-5 Days</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
+

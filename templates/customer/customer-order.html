@@ -1,0 +1,149 @@
+{% extends 'layout.html' %}
+{% block mystyle %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/cust_order.css') }}"/>
+{% endblock %}
+
+{% block title %}My Orders - {% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+<div class="banner-products">
+<div class="container-fluid my-5 d-flex justify-content-center">
+    {% for order in orders.items %}
+    <div class="card card-1 my-4">
+        <div class="card-header bg-white">
+            <div class="media flex-sm-row flex-column-reverse justify-content-between ">
+                <div class="col my-auto">
+                    <h4 class="mb-0">Order Reference # <span class="change-color"> {{ order.reference }}</span>
+                    </h4>
+                </div>
+                <div class="col-auto text-center my-auto pl-0 pt-sm-4"><img
+                        class="img-fluid my-auto align-items-center mb-0 pt-3"
+                        src="{{ url_for('static', filename='imgs/almond_logo.png') }}" width="115" height="115">
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="row justify-content-between mb-3">
+                <div class="col-auto">
+                    <h6 class="color-1 mb-0 change-color">Receipt</h6>
+                </div>
+                <div class="col-auto "><mark class="bold change-color">Status: {{ order.status }}</mark></div>
+            </div>
+            {% for item in order.items %}
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="card card-2">
+                        <div class="card-body">
+                            <div class="media">
+                                <div class="sq align-self-center "><img
+                                        class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0"
+                                        src="{{ url_for('static', filename=item.product.image) }}"
+                                        style="width: 130px; height: 130px;">
+                                </div>
+                                <div class="media-body my-auto text-right">
+                                    <div class="row my-auto flex-column flex-md-row">
+                                        <div class="col my-auto">
+                                            <h6 class="mb-0"> {{ item.product.name }}</h6>
+                                        </div>
+                                        <div class="col my-auto"><small>Category: {{ item.product.category }}</small>
+                                        </div>
+                                        <div class="col my-auto"><small>Qty : {{ item.quantity }}</small></div>
+                                        <div class="col my-auto">
+                                            <h6 class="mb-0">&#8377; {{ item.product.price * item.quantity}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="row mt-4">
+                <div class="col">
+                    <div class="row justify-content-between">
+                        <div class="col-auto">
+                            <p class="mb-1 text-dark"><b>Order Details</b></p>
+                        </div>
+                        <div class="flex-sm-col text-right col">
+                            <p class="mb-1"><b>Total</b></p>
+                        </div>
+                        <div class="flex-sm-col col-auto">
+                            <p class="mb-1">&#8377;{{ order.order_total() }}</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-between">
+                        <div class="flex-sm-col text-right col">
+                            <p class="mb-1"><b>Delivery Charges</b></p>
+                        </div>
+                        <div class="flex-sm-col col-auto">
+                            <p class="mb-1">
+                                {% if order.order_total() - 100 > 100 %}
+                                Free
+                                {% else %}
+                                &#8377;100
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row invoice">
+                <div class="col">
+                    <br>
+                    <br>
+                    <p class="mb-1">{{ order.order_date.strftime('%b %d, %Y') }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="jumbotron-fluid">
+                <div class="row justify-content-between ">
+                    <div class="col-auto my-auto ">
+                        <h2 class="mb-0 font-weight-bold">TOTAL PAID</h2>
+                    </div>
+                    <div class="col-auto my-auto ml-auto">
+                        <h1 class="display-3 ">&#8377;
+                            {{ order.order_total() }}
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="container">
+    <div class="row mb-3 my-2">
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            {% if orders.has_prev %}
+            <a class="btn btn-primary"
+               href="{{ url_for('customer_order', page_num=orders.prev_num) }}">
+                <i class="fa fa-chevron-circle-left"></i> Previous</a>
+            {% else %}
+            <a class="btn btn-secondary disabled"><i class="fa fa-chevron-circle-left"></i> Previous</a>
+            {% endif %}
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            {% if orders.has_next %}
+            <a class="btn btn-primary float-right"
+               href="{{ url_for('customer_order', page_num=orders.next_num) }}">Next
+                <i class="fa fa-chevron-circle-right"></i></a>
+            {% else %}
+            <a class="btn btn-secondary float-right disabled">Next <i
+                    class="fa fa-chevron-circle-right"></i></a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock content%}

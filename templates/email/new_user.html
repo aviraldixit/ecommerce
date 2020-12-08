@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" style="box-sizing: border-box;font-family: sans-serif;line-height: 1.15;-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: transparent;-ms-text-size-adjust: 100%;-ms-overflow-style: scrollbar;">
+<head style="box-sizing: border-box;">
+    <meta charset="UTF-8" style="box-sizing: border-box;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" style="box-sizing: border-box;">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" style="box-sizing: border-box;">
+    <!-- google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet" style="box-sizing: border-box;">
+</head>
+<body style="box-sizing: border-box;margin: 0;font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;text-align: left;background-color: #fff;min-width: 992px!important;">
+<div class="container" style="box-sizing: border-box;width: 100%;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;min-width: 992px!important;">
+
+    <div class="card-header" style="box-sizing: border-box;padding: .75rem 1.25rem;margin-bottom: 0;background-color: rgba(0,0,0,.03);border-bottom: 1px solid rgba(0,0,0,.125);border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;">
+        <div class="jumbotron-fluid" style="box-sizing: border-box;padding-right: 0;padding-left: 0;border-radius: 0;">
+            <div class="row" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;">
+                <div class="col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;min-height: 1px;">
+                    <div class="text-center" style="box-sizing: border-box;text-align: center!important;"><img class="img-fluid align-items-center my-2" src="{{ url_for('static', filename='imgs/almond_logo.png', _external=True) }}" width="115" height="115" style="box-sizing: border-box;vertical-align: middle;border-style: none;page-break-inside: avoid;max-width: 100%;height: auto;-ms-flex-align: center!important;align-items: center!important;margin-top: .5rem!important;margin-bottom: .5rem!important;">
+                    </div>
+                </div>
+            </div>
+            <div class="row" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;">
+                <div class="col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;min-height: 1px;">
+                    <h3 class="text-center" style="box-sizing: border-box;margin-top: 0;margin-bottom: .5rem;font-weight: 500;line-height: 1.2;font-size: 1.75rem;orphans: 3;widows: 3;page-break-after: avoid;font-family: inherit;color: inherit;text-align: center!important;">Welcome to Fresh Almonds</h3>
+                </div>
+            </div>
+            <hr style="box-sizing: content-box;height: 0;overflow: visible;margin-top: 1rem;margin-bottom: 1rem;border: 0;border-top: 1px solid rgba(0,0,0,.1);">
+            <div class="row" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;">
+                <div class="col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;min-height: 1px;">
+                    <p class="text-justify" style="box-sizing: border-box;margin-top: 0;margin-bottom: 1rem;orphans: 3;widows: 3;text-align: justify!important;">Hi, <span class="font-italic font-weight-bold" style="box-sizing: border-box;font-weight: 700!important;font-style: italic!important;">{{ user.name }}!!</span></p>
+                    <p style="box-sizing: border-box;margin-top: 0;margin-bottom: 1rem;orphans: 3;widows: 3;">Thanks for registering with FreshAlmonds.</p>
+                    <p style="box-sizing: border-box;margin-top: 0;margin-bottom: 1rem;orphans: 3;widows: 3;">We will continue to provide our best services</p>
+                </div>
+            </div>
+            <br style="box-sizing: border-box;">
+            <a class="btn btn-warning btn-lg float-left" href="{{ url }}" style="box-sizing: border-box;color: #212529;text-decoration: none;background-color: #ffc107;-webkit-text-decoration-skip: objects;display: inline-block;font-weight: 400;text-align: center;vertical-align: middle;cursor: pointer;-webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;border: 1px solid transparent;padding: .5rem 1rem;font-size: 1.25rem;line-height: 1.5;border-radius: .3rem;transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;border-color: #ffc107;white-space: nowrap;float: left!important;">Shop with Us</a>
+            <br style="box-sizing: border-box;">
+            <br style="box-sizing: border-box;">
+            <br style="box-sizing: border-box;">
+            <div class="row" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;">
+                <div class="col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;min-height: 1px;">
+                    <h5 style="box-sizing: border-box;margin-top: 0;margin-bottom: .5rem;font-weight: 500;line-height: 1.2;font-size: 1.25rem;font-family: inherit;color: inherit;">Regards,</h5>
+                </div>
+            </div>
+            <div class="row" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;">
+                <div class="col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;min-height: 1px;">
+                    <p style="box-sizing: border-box;margin-top: 0;margin-bottom: 1rem;orphans: 3;widows: 3;">FreshAlmonds Team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

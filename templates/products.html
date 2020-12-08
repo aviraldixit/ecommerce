@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!-- bootstrap css -->
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- main css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+    <!-- google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Courgette"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="css/all.css" />
+    <title>Almond</title>
+    <style></style>
+  </head>
+
+  <body>
+    <!--
+      https://www.iconfinder.com/icons/185106/armchair_chair_streamline_icon
+      Creative Commons (Attribution 3.0 Unported);
+      https://www.iconfinder.com/webalys
+    -->
+    <header>
+      <!-- navbar -->
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <!--
+          https://www.iconfinder.com/icons/185106/armchair_chair_streamline_icon
+          Creative Commons (Attribution 3.0 Unported);
+          https://www.iconfinder.com/webalys
+        -->
+        <a href="index.html" class="navbar-brand">
+          <img src="img/logo.png" alt="company logo" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#myNavbar"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item mx-2 ">
+              <a href="index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item mx-2 nav-active">
+              <a href="products.html" class="nav-link">Products</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a href="contact.html" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item mx-2">
+              <a href="about.html" class="nav-link">About</a>
+            </li>
+          </ul>
+        </div>
+        <div class="navbar-icons d-none d-lg-flex">
+          <!-- single icon -->
+          <div class="navbar-icon mx-2"><i class="fas fa-search"></i></div>
+          <!-- end of single icon -->
+          <!-- single icon -->
+          <a href="store.html" class="navbar-icon mx-2 navbar-cart-icon">
+            <i class="fas fa-shopping-cart"></i>
+            <div class="cart-items">2</div>
+          </a>
+          <!-- end of  single icon -->
+        </div>
+      </nav>
+      <!-- end of navbar -->
+      <div
+        class="banner-products d-flex align-items-center justify-content-center pl-3 pl-lg-5 text-center"
+      >
+        <div>
+          <h1 class="text-capitalize text-yellow text-slanted display-4">
+            Almond
+          </h1>
+          <h1 class="text-capitalize font-weight-bold display-4">
+            our products
+          </h1>
+        </div>
+      </div>
+    </header>
+    <!-- end of header section -->
+<!-- products -->
+<section class="products">
+  <div class="container-fluid">
+    <div class="row">
+      <!-- product info -->
+      <div class="col-10 col-md-5 col-lg-3 mx-auto my-3 px-5 text-capitalize">
+<!-- categories -->
+<div class="products-categories-title my-4">
+  <h6 class="text-uppercase">shop by categories</h6>
+  <div class="products-categories-underline"></div>
+</div>
+<!-- single link -->
+<a href="#" class="d-block products-categories-link">
+  <p class="mb-0">Premium</p>
+</a>
+<!-- end of single link -->
+<!-- single link -->
+<a href="#" class="d-block products-categories-link">
+  <p class="mb-0">Best</p>
+</a>
+<!-- end of single link -->
+<!-- single link -->
+<a href="#" class="d-block products-categories-link">
+  <p class="mb-0">Better</p>
+</a>
+<!-- end of single link -->
+<!-- single link -->
+<!-- end of single link -->
+<!-- end of title -->
+<div class="products-categories-title my-4">
+  <h6 class="text-uppercase">shop by price</h6>
+  <div class="products-categories-underline"></div>
+</div>
+<form>
+  <div class="form-group">
+    <label for="price-range">range : $0 - $1000</label>
+    <input type="range" name="price-range" class="form-control-range" id="price-range">
+  </div>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text form-icon">
+        <i class="fa fa-search"></i>
+      </span>
+    </div>
+    <input type="text" class="form-control text-capitalize" placeholder="search by name">
+  </div>
+</form>
+<!-- end of title -->
+<!-- end of single color -->
+<!--  -->
+      </div>
+      <!-- product img -->
+      <div class="col-10 col-md-7 col-lg-9 mx-auto my-3 ">
+        <div class="row">
+          <!-- single product -->
+          <div class="mx-auto col-md-6 col-lg-4">
+            <div class="featured-container p-5">
+              <img src="img/img-products/pr1.jpg" class="img-fluid" alt="product" />
+              <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+                <i class="fas fa-search"></i>
+              </span>
+              <a href="#" class="featured-store-link text-captilaze">add to cart</a>
+            </div>
+            <h6 class="text-capitalize text-center my-2">special product</h6>
+            <h6 class="text-center">
+              <span class="text-muted old-price mx-2">$200</span>
+              <span>$100</span>
+            </h6>
+          </div>
+          <!-- end single product -->
+          <!-- single product -->
+          <div class="mx-auto col-md-6 col-lg-4">
+            <div class="featured-container p-5">
+              <img src="img/img-products/pr2.jpg" class="img-fluid" alt="product" />
+              <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+                <i class="fas fa-search"></i>
+              </span>
+              <a href="#" class="featured-store-link text-captilaze">add to cart</a>
+            </div>
+            <h6 class="text-capitalize text-center my-2">special product</h6>
+            <h6 class="text-center">
+              <span class="text-muted old-price mx-2">$200</span>
+              <span>$100</span>
+            </h6>
+          </div>
+          <!-- end single product -->
+          <!-- single product -->
+          <div class="mx-auto col-md-6 col-lg-4">
+            <div class="featured-container p-5">
+              <img src="img/img-products/pr3.jpg" class="img-fluid" alt="product" />
+              <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+                <i class="fas fa-search"></i>
+              </span>
+              <a href="#" class="featured-store-link text-captilaze">add to cart</a>
+            </div>
+            <h6 class="text-capitalize text-center my-2">special product</h6>
+            <h6 class="text-center">
+              <span class="text-muted old-price mx-2">$200</span>
+              <span>$100</span>
+            </h6>
+          </div>
+          <!-- end single product -->
+          <!-- single product -->
+          <div class="mx-auto col-md-6 col-lg-4">
+            <div class="featured-container p-5">
+              <img src="img/img-products/pr2.jpg" class="img-fluid" alt="product" />
+              <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+                <i class="fas fa-search"></i>
+              </span>
+              <a href="#" class="featured-store-link text-captilaze">add to cart</a>
+            </div>
+            <h6 class="text-capitalize text-center my-2">special product</h6>
+            <h6 class="text-center">
+              <span class="text-muted old-price mx-2">$200</span>
+              <span>$100</span>
+            </h6>
+          </div>
+          <!-- end single product -->
+          <!-- single product -->
+          <div class="mx-auto col-md-6 col-lg-4">
+            <div class="featured-container p-5">
+              <img src="img/img-products/pr1.jpg" class="img-fluid" alt="product" />
+              <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+                <i class="fas fa-search"></i>
+              </span>
+              <a href="#" class="featured-store-link text-captilaze">add to cart</a>
+            </div>
+            <h6 class="text-capitalize text-center my-2">special product</h6>
+            <h6 class="text-center">
+              <span class="text-muted old-price mx-2">$200</span>
+              <span>$100</span>
+            </h6>
+          </div>
+          <!-- end single product -->
+          <!-- single product -->
+          <div class="mx-auto col-md-6 col-lg-4">
+            <div class="featured-container p-5">
+              <img src="img/img-products/pr2.jpg" class="img-fluid" alt="product" />
+              <span class="featured-search-icon" data-toggle="modal" data-target="#productModal">
+                <i class="fas fa-search"></i>
+              </span>
+              <a href="#" class="featured-store-link text-captilaze">add to cart</a>
+            </div>
+            <h6 class="text-capitalize text-center my-2">special product</h6>
+            <h6 class="text-center">
+              <span class="text-muted old-price mx-2">$200</span>
+              <span>$100</span>
+            </h6>
+          </div>
+          <!-- end single product -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- end of products -->
+    <!-- featured section -->
+    <!-- end of  featured section -->
+    <!-- partners -->
+    <!-- end of  partners -->
+    <!-- newsletter -->
+    <section class="newsletter py-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-10 mx-auto text-center">
+            <h2 class="text-uppercase">newsletter</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti
+              blanditiis similique eum, aut culpa maiores cupiditate alias
+              exercitationem error nesciunt.
+            </p>
+            <form>
+              <div class="input-group mt-5 mb-4">
+                <input
+                  type="text"
+                  class="form-control text-capitalize"
+                  placeholder="enter your email"
+                />
+                <div class="input-group-append">
+                  <div class="input-group-text form-icon">
+                    <i class="fas fa-envelope"></i>
+                  </div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-yellow">subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- end newsletter -->
+    <!-- skills -->
+    <section class="skills py-5">
+      <div class="container">
+        <div class="row">
+          <!-- single skill -->
+          <div class="col-10 mx-auto col-md-6 col-lg-4 d-flex my-3">
+            <div class="skill-icon mr-3"><i class="fas fa-truck"></i></div>
+            <div class="skill-text">
+              <h3 class="text-uppercase text-white">free shipping</h3>
+              <p class="text-muted text-capitalize">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
+                pariatur.
+              </p>
+            </div>
+          </div>
+          <!-- end of  single skill -->
+          <!-- single skill -->
+          <div class="col-10 mx-auto col-md-6 col-lg-4 d-flex my-3">
+            <div class="skill-icon mr-3">
+              <i class="fas fa-comment-dollar"></i>
+            </div>
+            <div class="skill-text">
+              <h3 class="text-uppercase text-white">price promise</h3>
+              <p class="text-muted text-capitalize">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
+                pariatur.
+              </p>
+            </div>
+          </div>
+          <!-- end of  single skill -->
+          <!-- single skill -->
+          <!-- end of  single skill -->
+        </div>
+      </div>
+    </section>
+    <!-- end skills -->
+    <!-- footer -->
+    <footer class="py-5 footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-10 mx-auto text-center">
+            <h1
+              class="text-uppercase font-weight-bold text-yellow footer-title text-center d-inline-block"
+            >
+              Almond
+            </h1>
+            <div class="footer-icons my-5 d-flex justify-content-center">
+              <!-- single icon -->
+              <a href="#" class="footer-icon mx-2">
+                <i class="fab fa-facebook"></i>
+              </a>
+              <!-- end of  single icon -->
+              <!-- single icon -->
+              <a href="#" class="footer-icon mx-2">
+                <i class="fab fa-twitter"></i>
+              </a>
+              <!-- end of  single icon -->
+              <!-- single icon -->
+              <a href="#" class="footer-icon mx-2">
+                <i class="fab fa-google-plus"></i>
+              </a>
+              <!-- end of  single icon -->
+              <!-- single icon -->
+              <a href="#" class="footer-icon mx-2">
+                <i class="fab fa-instagram"></i>
+              </a>
+              <!-- end of  single icon -->
+              <!-- single icon -->
+              <a href="#" class="footer-icon mx-2">
+                <i class="fab fa-youtube"></i>
+              </a>
+              <!-- end of  single icon -->
+            </div>
+            <!-- end footer icons -->
+            <p class="text-muted text-capitalize w-75 mx-auto text-left">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quas
+              itaque minima rem esse aut eos inventore numquam nostrum placeat?
+            </p>
+            <div
+              class="footer-contact mt-5 d-flex justify-content-around flex-wrap"
+            >
+              <!-- single contact -->
+              <div class="text-capitalize">
+                <span class="footer-icon mr-2">
+                  <i class="fas fa-map"></i>
+                </span>
+                123 main street, los angeles
+              </div>
+              <!-- end of single contact -->
+              <!-- single contact -->
+              <div class="text-capitalize">
+                <span class="footer-icon mr-2">
+                  <i class="fas fa-phone"></i>
+                </span>
+                phone : + (310) 111 2222
+              </div>
+              <!-- end of single contact -->
+              <!-- single contact -->
+              <div class="text-capitalize">
+                <span class="footer-icon mr-2">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                email : eamil@email.com
+              </div>
+              <!-- end of single contact -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- modal -->
+    <!-- modal -->
+    <div class="modal fade" id="productModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <!-- modal header -->
+          <div class="modal-header">
+            <h5 class="modal-title text-capitalize">product info</h5>
+            <button type="button" class="close" data-dismiss="modal">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <!--end of  modal header -->
+          <!-- modal body -->
+          <div class="modal-body">
+            <div class="row">
+              <div class="col text-center">
+                <img src="img/img-products/pr1.jpg" class="img-fluid" alt="" />
+                <!-- ratings -->
+                <div class="ratings">
+                  <span class="rating-icon"><i class="fas fa-star"></i></span>
+                  <span class="rating-icon"><i class="fas fa-star"></i></span>
+                  <span class="rating-icon"><i class="fas fa-star"></i></span>
+                  <span class="rating-icon"><i class="fas fa-star"></i></span>
+                  <span class="rating-icon"><i class="far fa-star"></i></span>
+                  <span class="text-capitalize">(25 customer reviews)</span>
+                </div>
+                <!-- end of ratings -->
+                <h2 class="text-uppercase my-2">Premium Almond quality</h2>
+                <h2>$10.00 - $200.00</h2>
+                <p class="lead text-muted">
+                  Almond Premium quality comes at a price of 700
+                </p>
+                <!-- colors -->
+                <!-- end of colors -->
+                <!-- sizes -->
+                <div class="d-flex flex-wrap">
+                  <!-- cart buttons -->
+                  <div class="d-flex my-2">
+                    <span class="btn btn-black mx-1">-</span>
+                    <span class="btn btn-black mx-1">4</span>
+                    <span class="btn btn-black mx-1">+</span>
+                  </div>
+                  <button class="btn btn-black my-2 mx-2">wishlist</button>
+                  <button class="btn btn-yellow my-2 mx-2">add to cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- end modal body -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">close modal</button>
+          </div>
+        </div>
+    
+      </div>
+    </div>
+    <!-- jquery -->
+    <script src="{{ url_for('static', filename='bs/js/jquery-3.3.1.min.js') }}"></script>
+    <!-- bootstrap js -->
+    <script src="{{ url_for('static', filename='bs/js/bootstrap.bundle.min.js') }}"></script>
+    <!-- script js -->
+    <script src="{{ url_for('static', filename='bs/js/app.js') }}"></script>
+  </body>
+</html>

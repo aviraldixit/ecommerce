@@ -1,0 +1,288 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head %}
+{% block mystyle %}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+<!-- bootstrap css -->
+<!-- Bootstrap CSS -->
+<link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='imgs/Almond_V1.jpg') }}"/>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<!-- main css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}"/>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/contact.css') }}"/>
+<!-- google fonts -->
+<link
+        href="https://fonts.googleapis.com/css?family=Courgette"
+        rel="stylesheet"
+/>
+
+<!-- font awesome -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}"/>
+{% endblock %}
+<title>{% block title %}{% endblock %}</title>
+{% endblock %}
+
+
+{% block body %}
+
+<header>
+    <!-- navbar -->
+    {% block nav %}
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a href="{{ url_for('home') }}" class="navbar-brand">
+            <img src="{{ url_for('static', filename='imgs/Almond_V1.jpg') }}" alt="almond logo"
+                 style="width: 80px; height: 80px;"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item mx-2 {% if  request.endpoint == 'home' %}nav-active{% endif %}">
+                    <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item mx-2 {% if  request.endpoint == 'viewproducts' or request.endpoint == 'view_products_by_category' or request.endpoint == 'view_products_by_price' or request.endpoint == 'index'
+                %}nav-active{% endif %}">
+                    <a href="{{ url_for('viewproducts', page_num=1) }}" class="nav-link">Products</a>
+                </li>
+                <li class="nav-item mx-2 {% if  request.endpoint == 'contact' %}nav-active{% endif %}">
+                    <a href="{{ url_for('contact') }}" class="nav-link">Contact</a>
+                </li>
+                <li class="nav-item mx-2 {% if  request.endpoint == 'about' %}nav-active{% endif %}">
+                    <a href="{{ url_for('about') }}" class="nav-link">About</a>
+                </li>
+            </ul>
+            {% if not current_user.is_authenticated %}
+            <div class="mx-2">
+                <a class="btn btn-info" href="/login" role="button">Login</a>
+                <a class="btn btn-danger mx-2" href="/register" role="button">SignUp</a>
+            </div>
+            {% else %}
+
+            {% if current_user.role == 'admin' %}
+            <div class="btn-group dropleft show mx-2">
+                <a class="btn btn-info btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLinkAdmin"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hello, {{ current_user.name }}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkUser">
+                    <a class="dropdown-item" href="{{ url_for('view_all_products', page_num=1) }}">View Products</a>
+                    <a class="dropdown-item" href="{{ url_for('add') }}">Add New Product</a>
+                    <a class="dropdown-item" href="{{ url_for('update') }}">Update Existing Product</a>
+                    <a class="dropdown-item" href="{{ url_for('delete') }}">Remove Product</a>
+                    <a class="dropdown-item" href="{{ url_for('view_all_orders', page_num=1) }}">View Orders</a>
+                </div>
+            </div>
+            {% else %}
+            <div class="btn-group dropleft show mx-2">
+                <a class="btn btn-info btn-sm dropdown-toggle" href="#" role="button" id="dropdownMenuLinkUser"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Hello, {{ current_user.name }}
+                </a>
+
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLinkAdmin">
+                    <a class="dropdown-item" href="{{ url_for('customer_order', page_num=1) }}">View Orders</a>
+                    <a class="dropdown-item" href="{{ url_for('profile') }}">View/Update Profile</a>
+                </div>
+            </div>
+            {% endif %}
+            <a class="btn btn-light mx-2" href="{{ url_for('logout') }}">Log Out</a>
+            {% endif %}
+
+            {% if (current_user.is_authenticated) and ( current_user.role != 'admin' ) %}
+
+            {% block cartcontent %}
+            {% if no_of_cart_items %}
+
+            <div class="navbar-icons">
+                <a href="{{ url_for('cart') }}" class="navbar-icon mx-2 navbar-cart-icon">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                    <div class="cart-items vertical-align">{{ no_of_cart_items }}</div>
+                </a>
+                <!-- end of  single icon -->
+            </div>
+            {% endif %}
+            {% endblock %}
+            {% endif %}
+        </div>
+    </nav>
+    {% endblock %}
+
+    {% block banner %}
+
+    <div class="banner d-flex align-items-center pl-3 pl-lg-5">
+        <div>
+            <h1 class="text-uppercase font-weight-bold">Almond</h1>
+            <a href="{{ url_for('viewproducts', page_num=1) }}" class="btn btn-yellow">view products</a>
+        </div>
+    </div>
+    {% endblock %}
+</header>
+
+{% block content %}{% endblock %}
+
+<!-- services section -->
+<section class="services py-5 text-center">
+    <div class="container">
+        <div class="row">
+            <!-- single service -->
+            <div class="col-10 mx-auto col-md-6 col-lg-4 my-3">
+            <span class="service-icon">
+              <i class="fas fa-shipping-fast"></i>
+            </span>
+                <h5 class="font-weight-bold text-uppercase">free shipping</h5>
+                <p class="text-muted text-capitalize">
+                    free shipping on all order over &#x20B9; 100
+                </p>
+            </div>
+            <!-- end of single service -->
+            <!-- single service -->
+            <div class="col-10 mx-auto col-md-6 col-lg-4 my-3">
+            <span class="service-icon">
+              <i class="fas fa-phone-volume"></i>
+            </span>
+                <h5 class="font-weight-bold text-uppercase">online support 24/7</h5>
+                <p class="text-muted text-capitalize">
+                    we will assist you with your inquiries
+                </p>
+            </div>
+            <!-- end of single service -->
+            <!-- single service -->
+            <div class="col-10 mx-auto col-md-6 col-lg-4 my-3">
+            <span class="service-icon">
+              <i class="fas fa-rupee-sign"></i>
+            </span>
+                <h5 class="font-weight-bold text-uppercase">money back gurantee</h5>
+                <p class="text-muted text-capitalize">
+                    free 100% refund for 30 days
+                </p>
+            </div>
+            <!-- end of single service -->
+        </div>
+    </div>
+</section>
+
+<section class="skills py-5">
+    <div class="container">
+        <div class="row">
+            <!-- single skill -->
+            <div class="col-10 mx-auto col-md-6 col-lg-4 d-flex my-3">
+                <div class="skill-icon mr-3"><i class="fas fa-truck"></i></div>
+                <div class="skill-text">
+                    <h3 class="text-uppercase text-white">free shipping</h3>
+                    <p class="text-muted text-capitalize">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
+                        pariatur.
+                    </p>
+                </div>
+            </div>
+            <!-- end of  single skill -->
+            <!-- single skill -->
+            <div class="col-10 mx-auto col-md-6 col-lg-4 d-flex my-3">
+                <div class="skill-icon mr-3">
+                    <i class="fas fa-rupee-sign"></i>
+                </div>
+                <div class="skill-text">
+                    <h3 class="text-uppercase text-white">price promise</h3>
+                    <p class="text-muted text-capitalize">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus,
+                        pariatur.
+                    </p>
+                </div>
+            </div>
+            <!-- end of  single skill -->
+            <!-- single skill -->
+            <!-- end of  single skill -->
+        </div>
+    </div>
+</section>
+
+
+<footer class="py-5 footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-10 mx-auto text-center">
+                <h1
+                        class="text-uppercase font-weight-bold text-yellow footer-title text-center d-inline-block">
+                    Almond
+                </h1>
+                <div class="footer-icons my-5 d-flex justify-content-center">
+                    <!-- single icon -->
+                    <a href="#" class="footer-icon mx-2">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <!-- end of  single icon -->
+                    <!-- single icon -->
+                    <a href="#" class="footer-icon mx-2">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <!-- end of  single icon -->
+                    <!-- single icon -->
+                    <a href="#" class="footer-icon mx-2">
+                        <i class="fab fa-google-plus"></i>
+                    </a>
+                    <!-- end of  single icon -->
+                    <!-- single icon -->
+                    <a href="#" class="footer-icon mx-2">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <!-- end of  single icon -->
+                    <!-- single icon -->
+                    <a href="#" class="footer-icon mx-2">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <!-- end of  single icon -->
+                </div>
+                <!-- end footer icons -->
+                <p class="text-muted text-capitalize w-75 mx-auto text-left">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel quas
+                    itaque minima rem esse aut eos inventore numquam nostrum placeat?
+                </p>
+                <div
+                        class="footer-contact mt-5 d-flex justify-content-around flex-wrap"
+                >
+                    <!-- single contact -->
+                    <div class="text-capitalize">
+                <span class="footer-icon mr-2">
+                  <i class="fas fa-map"></i>
+                </span>
+                        123 main street, los angeles
+                    </div>
+                    <!-- end of single contact -->
+                    <!-- single contact -->
+                    <div class="text-capitalize">
+                <span class="footer-icon mr-2">
+                  <i class="fas fa-phone"></i>
+                </span>
+                        phone : + (310) 111 2222
+                    </div>
+                    <!-- end of single contact -->
+                    <!-- single contact -->
+                    <div class="text-capitalize">
+                <span class="footer-icon mr-2">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                        email : eamil@email.com
+                    </div>
+                    <!-- end of single contact -->
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jquery -->
+<script src="{{ url_for('static', filename='bs/js/jquery-3.3.1.min.js') }}"></script>
+<!-- bootstrap js -->
+<script src="{{ url_for('static', filename='bs/js/bootstrap.bundle.min.js') }}"></script>
+<!-- script js -->
+<script src="{{ url_for('static', filename='bs/js/app.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block mystyle %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+<style>
+  .bg-gold { background-color: #F0E68C; }
+
+
+
+
+</style>
+{% endblock %}
+
+{% block title %}Order Confirmed{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+{% block cartcontent %}
+{% endblock %}
+<main role="main" class="container">
+    <div class="jumbotron p-4 p-md-5 rounded bg-gold">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-4 text-center"><i class="fas fa-check-circle" style='color:green'></i></h1>
+                <h2 class="my-3"><i class="far fa-smile"></i> THANK YOU FOR YOUR ORDER!</h2>
+                <p class="lead my-3">You will receive an order confirmation email with details of your order.</p>
+                <p class="lead mb-0">Your Order Reference No. # {{ reference }}</p>
+                <hr>
+                <a class="btn btn-primary my-2" type="button" href="{{ url_for('viewproducts', page_num=1) }}">Continue
+                    Shopping</a>
+            </div>
+        </div>
+
+    </div>
+</main>
+{% endblock %}

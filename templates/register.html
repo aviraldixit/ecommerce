@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+
+{% block title %}Register{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+<div class="banner d-flex align-items-center">
+    <div class="container">
+        <form class="form-horizontal my-4" role="form" method="post" action="{{ url_for('register') }}">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                <span>{{ message }}</span>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+            {{ form.csrf_token }}
+            <h5 class="text-center bold">Please Sign In</h5>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    {{ wtf.form_field(form.name, class="form-control", id="name") }}
+                    <ul>
+                        {% for error in form.name.errors %}
+                        <li style="color:red;">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    {{ wtf.form_field(form.email, class="form-control", id="email", type="email") }}
+                    <ul>
+                        {% for error in form.email.errors %}
+                        <li style="color:red;">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    {{ wtf.form_field(form.password, class="form-control", id="password", type="password") }}
+                    <ul>
+                        {% for error in form.password.errors %}
+                        <li style="color:red;">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-9">
+                    {{ wtf.form_field(form.password_confirm, class="form-control", id="password_confirm",
+                    type="password") }}
+                    <ul>
+                        {% for error in form.password_confirm.errors %}
+                        <li style="color:red;">{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-success my-2">Register</button>
+            <div>
+                <p>Already have an account? <a href="/login">login here</a></p>
+            </div>
+
+        </form> <!-- /form -->
+    </div> <!-- ./container -->
+</div>
+{% endblock %}

@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block mystyle %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}"/>
+<script src="{{ url_for('static', filename='bs/js/slider.js') }}"></script>
+{% endblock %}
+{% block title %}Products{% endblock %}
+{% block banner %}
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+    <span>{{ message }}</span>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %}
+{% endif %}
+{% endwith %}
+{% endblock %}
+{% block content %}
+<section class="products">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- product info -->
+            <div class="col-10 col-md-5 col-lg-3 mx-auto my-3 px-5 text-capitalize">
+                <!-- categories -->
+                <div class="products-categories-title my-4">
+                    <h6 class="text-uppercase">shop by categories</h6>
+                    <div class="products-categories-underline"></div>
+                </div>
+                <!-- single link -->
+                <a href="{{ url_for('viewproducts', page_num=1) }}"
+                   class="d-block products-categories-link">
+                    <p class="mb-0">All</p>
+                </a>
+                <a href="{{ url_for('view_products_by_category', category='Premium', page_num=1) }}"
+                   class="d-block products-categories-link">
+                    <p class="mb-0">Premium</p>
+                </a>
+                <!-- end of single link -->
+                <!-- single link -->
+                <a href="{{ url_for('view_products_by_category', category='Best', page_num=1) }}"
+                   class="d-block products-categories-link">
+                    <p class="mb-0">Best</p>
+                </a>
+                <!-- end of single link -->
+                <!-- single link -->
+                <a href="{{ url_for('view_products_by_category', category='Better', page_num=1) }}"
+                   class="d-block products-categories-link">
+                    <p class="mb-0">Better</p>
+                </a>
+            </div>
+            <!-- product img -->
+            <div class="col-10 col-md-7 col-lg-9 mx-auto my-3 ">
+                <div class="row">
+                    {% for product in products.items %}
+                    {% if product.stock > 0 %}
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            <a href="{{ url_for('product', id=product.id) }}">
+                                <img src="{{ url_for('static', filename = product.image) }}" alt=""
+                                     class="bd-placeholder-img card-img-top" width="100%"
+                                     height="225">
+                            </a>
+                            <div class="card-body">
+                                <h4 class="bold">{{ product.name }}</h4>
+                                <small class="font-italic font-weight-bold">&#x20B9; {{ product.price }}</small>
+                                <p class="card-text">
+                                    {% if product.description | length <= 50 %}
+                                    {{ product.description }}
+                                    {% else %}
+                                    {{ product.description[0: 50] }}...
+                                    {% endif %}
+                                </p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="{{ url_for('product', id=product.id) }}"
+                                           class="btn btn-primary btn-sm float-left mx-1">
+                                            <i class="far fa-eye"></i>View
+                                        </a>
+                                        <a href="{{ url_for('quick_add', id=product.id) }}"
+                                           class="btn btn-secondary btn-sm mx-1">
+                                            <i class="fas fa-shopping-cart"></i>Add To Cart
+                                        </a>
+                                        <a href="{{ url_for('buy_now', product_id=product.id) }}"
+                                           class="btn btn-warning float-right btn-sm mx-1">
+                                            <i class="fas fa-bolt"></i>Buy Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="my-2">
+                    {% if products.has_prev %}
+                    <a class="btn btn-primary float-left"
+                       href="
+                       {% if page_flag == 'all' %}
+                       {{ url_for('viewproducts', page_num=products.prev_num) }}
+                       {% elif page_flag == 'category' %}
+                       {{ url_for('view_products_by_category', category=category, page_num=products.prev_num) }}
+                       {% elif page_flag == 'price' %}
+                       {{ url_for('view_products_by_price', page_num=products.prev_num) }}
+                       {% endif %}
+                       ">
+                        <i class="fa fa-chevron-circle-left"></i> Previous</a>
+                    {% else %}
+                    <a class="btn btn-secondary float-left disabled"><i class="fa fa-chevron-circle-left"></i> Previous</a>
+                    {% endif %}
+                    {% if products.has_next %}
+                    <a class="btn btn-primary float-right"
+                       href="
+                       {% if page_flag == 'all' %}
+                       {{ url_for('viewproducts', page_num=products.next_num) }}
+                       {% elif page_flag == 'category' %}
+                       {{ url_for('view_products_by_category', category=category, page_num=products.next_num) }}
+                       {% elif page_flag == 'price' %}
+                       {{ url_for('view_products_by_price', page_num=products.next_num) }}
+                       {% endif %}
+                       ">Next
+                        <i class="fa fa-chevron-circle-right"></i></a>
+                    {% else %}
+                    <a class="btn btn-secondary float-right disabled">Next <i
+                            class="fa fa-chevron-circle-right"></i></a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

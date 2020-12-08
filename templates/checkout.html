@@ -1,0 +1,179 @@
+{% extends "layout.html" %}
+{% block mystyle %}
+{{ super() }}
+<script src="{{ url_for('static', filename='bs/js/jquery-3.3.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename='bs/js/toggle.js') }}"></script>
+{% endblock %}
+
+{% block title %}Order Checkout{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+{% block cartcontent %}
+{% endblock %}
+<div class="banner d-flex align-items-center pl-3 pl-lg-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 mx-2 my-4">
+                <form class="form-horizontal my-4 my-form1" role="form" name="form1" id="form1" method="post" action="
+                {% if buy_flag%}
+                {{ url_for('buy_now', product_id=product_id) }}
+                {% else %}
+                {{ url_for('checkout') }}
+                {% endif %}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="bold text-center">Personal Information</h4>
+                        </div>
+                        {{ form.csrf_token }}
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Firstname</label>
+                                {{ form.first_name(class='form-control', value=address.first_name) }}
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                {{ form.phone_number(class='form-control', value=address.phone_number) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Lastname</label>
+                                {{ form.last_name(class='form-control', value=address.last_name) }}
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                {{ form.email(class='form-control', value=address.email) }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                {{ form.address(class='form-control', value=address.address) }}
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                {{ form.state(class='form-control', value=address.state) }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                {{ form.city(class='form-control', value=address.city) }}
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                {{ form.country(readonly=true, class='form-control', value='India') }}
+                            </div>
+                            <div class="form-group">
+                                <label>Postal Code</label>
+                                {{ form.postal_code(class='form-control', value=address.postal_code) }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer text-center">
+                        <button type="submit" class="btn btn-primary btn-sm my-2">
+                            Submit My Order
+                        </button>
+                    </div>
+                    {% if prev_order_flag %}
+                    <!-- Material switch -->
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input defaultSwitch" id="defaultSwitch">
+                        <label class="custom-control-label" for="defaultSwitch"><small>Use Another
+                            Address</small></label>
+                    </div>
+                    {% endif %}
+
+                </form> <!-- /form -->
+            </div>
+
+            <div class="col-lg-5 mx-2 my-4">
+                <form class="form-horizontal my-4 my-form2" role="form" method="post" action="
+                {% if buy_flag%}
+                {{ url_for('buy_now', product_id=product_id) }}
+                {% else %}
+                {{ url_for('checkout') }}
+                {% endif %}">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h4 class="bold text-center">Personal Information</h4>
+                        </div>
+                        {{ form.csrf_token }}
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Firstname</label>
+                                {{ form.first_name(class='form-control') }}
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                {{ form.phone_number(class='form-control') }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Lastname</label>
+                                {{ form.last_name(class='form-control') }}
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                {{ form.email(class='form-control') }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>Address</label>
+                                {{ form.address(class='form-control') }}
+                            </div>
+                            <div class="form-group">
+                                <label>State</label>
+                                {{ form.state(class='form-control') }}
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                {{ form.city(class='form-control') }}
+                            </div>
+                            <div class="form-group">
+                                <label>Country</label>
+                                {{ form.country(readonly=true, class='form-control', value='India') }}
+                            </div>
+                            <div class="form-group">
+                                <label>Postal Code</label>
+                                {{ form.postal_code(class='form-control') }}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-check">
+                        {{ form.default_address(class='form-check-input', id='defaultCheck1') }}
+                        <label class="form-check-label" for="defaultCheck1">
+                            <small>Make this Default</small>
+                        </label>
+                    </div>
+                    <div class="panel-footer text-center">
+                        <button type="submit" class="btn btn-primary btn-sm my-2">
+                            Submit My Order
+                        </button>
+                    </div>
+                    <!-- Material switch -->
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" id="anotherSwitch">
+                        <label class="custom-control-label anotherSwitch" for="anotherSwitch"><small>Use Default
+                            Address</small></label>
+                    </div>
+
+                </form> <!-- /form -->
+            </div>
+        </div>
+    </div> <!-- ./container -->
+</div>
+{% endblock %}

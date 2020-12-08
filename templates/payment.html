@@ -1,0 +1,98 @@
+{% extends "layout.html" %}
+{% block mystyle %}
+{{ super() }}
+<style>
+  /* Your external css file will go here. This is just for testing :) */
+
+.mycontainer{
+  max-width: 540px;;
+}
+
+</style>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    console.log("Sanity check!");
+// var order_id = JSON.parse($("#mydiv").data("order_id"));
+//var order_id = JSON.parse(document.getElementById("mydiv").dataset.order_id);
+var order_id = {{ order.id | tojson }};
+console.log(order_id);
+
+// Get Stripe publishable key
+fetch("/config")
+.then((result) => { return result.json(); })
+.then((data) => {
+  // Initialize Stripe.js
+  const stripe = Stripe(data.publicKey);
+
+  // Event handler
+  document.querySelector("#submitBtn").addEventListener("click", () => {
+    // Get Checkout Session ID
+    var payment_url = '/create-checkout-session/' + order_id
+    fetch(payment_url)
+    .then((result) => { return result.json(); })
+    .then((data) => {
+      console.log(data);
+      // Redirect to Stripe Checkout
+      return stripe.redirectToCheckout({sessionId: data.sessionId})
+    })
+    .then((res) => {
+      console.log(res);
+    });
+  });
+});
+
+</script>
+<script defer src="https://use.fontawesome.com/releases/v5.14.0/js/all.js"></script>
+
+{% endblock %}
+{% block title %}Payment Page{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+
+{% block content %}
+{% block cartcontent %}
+{% endblock %}
+<div class="banner d-flex align-items-center pl-3 pl-lg-5">
+    <div class="container mycontainer">
+
+        <ul class="list-group">
+            <li class="list-group-item my-4">
+                <h3 class="bold my-2 text-center">Review Items and Proceed</h3>
+                <hr>
+
+                <h6 class="bold my-2">
+                    <i class="fas fa-list"></i> Cart Details
+                </h6>
+                <div class="mb-5"></div>
+                <p>
+                    {% if quantity_total == 1 %} {{ quantity_total }} Item
+                    {% else %}
+                    {{ quantity_total }} Items {% endif %}<strong class="pull-right col-md-6 col-md-offset-3">&#x20B9;
+                    {{ grand_total}}</strong>
+                </p>
+                <p>
+                    Shipping Charges <strong class="pull-right col-md-6 col-md-offset-3">
+                    {% if grand_total > 100 %}
+                    &#x20B9; 0
+                    {% else %}
+                    &#x20B9; 100
+                    {% endif %}
+                </strong>
+                </p>
+                <hr/>
+                <p>Total <strong class="pull-right col-md-6 col-md-offset-3">&#x20B9; {{
+                    grand_total_plus_shipping}}</strong>
+                <div class="text-center">
+                    <div hidden id="mydiv" data-order_id='{{ order.id }}'>...</div>
+                    <button type="submit" class="btn btn-primary my-2" id="submitBtn">Purchase</button>
+                    <a class="btn btn-secondary my-2 mx-2" id="backButton" href="{{ url_for('index') }}">Back</a>
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

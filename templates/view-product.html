@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+{% block title %}Single Product{% endblock %}
+
+{% block banner %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mt-5">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="text-center">
+                <img class="rounded" src="{{ url_for('static', filename = product.image) }}" alt="product_image" style="width: 350px; height: 275px;">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h4>{{ product.name }}</h4>
+            {% if product.stock > 0 %}
+            <small>(In Stock)</small>
+            {% else %}
+            <small>(Out of Stock)</small>
+            {% endif %}
+            <hr>
+            <dl class="item-property">
+                <dt>Price</dt>
+                <dd><p class="price"><span class="mr-2"><i class="fas fa-rupee-sign"></i>&nbsp;{{ product.price}}</span>
+                </p></dd>
+            </dl>
+
+            <hr>
+            <dl class="item-property">
+                <dt>Description</dt>
+                <dd><p>{{ product.description }}</p></dd>
+            </dl>
+
+            <div class="d-flex align-items-center mt-5 delivery"><i class="fa fa-map-marker"></i><span class="ml-2">Delivery Within 4-5 Days<br></span><span
+                    class="ml-2 mr-2">|<br></span><span class="ml-2 mr-2 text-success">FREE&#42;<br></span></div>
+            <hr>
+
+            <form action="{{ url_for('add_to_cart') }}" method="POST">
+                {% if product.stock > 0 %}
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                Quantity
+                            </div>
+                            <div class="col-lg-12">
+                                {{ form.csrf_token }}
+
+                                {{ form.quantity(class='form-control', type='number', min=1, max=product.stock, step=1,
+                                value=1) }}
+
+                                {{ form.id(value=product.id) }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="mt-3">
+                    {% if product.stock > 0 %}
+                    <button type="submit" class="btn btn-primary">
+                        <i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart
+                    </button>
+                    <a href="{{ url_for('buy_now', product_id=product.id) }}" class="btn btn-success" type="button">Buy Now</a>
+                    {% endif %}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

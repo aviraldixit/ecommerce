@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" style="box-sizing: border-box;font-family: sans-serif;line-height: 1.15;-webkit-text-size-adjust: 100%;-webkit-tap-highlight-color: transparent;">
+<head style="box-sizing: border-box;">
+    <meta charset="UTF-8" style="box-sizing: border-box;">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" style="box-sizing: border-box;">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" style="box-sizing: border-box;">
+    <!-- bootstrap css -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" style="box-sizing: border-box;">
+</head>
+<body style="box-sizing: border-box;margin: 0;font-family: -apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,Roboto,&quot;Helvetica Neue&quot;,Arial,&quot;Noto Sans&quot;,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;,&quot;Segoe UI Symbol&quot;,&quot;Noto Color Emoji&quot;;font-size: 1rem;font-weight: 400;line-height: 1.5;color: #212529;text-align: left;background-color: #fff;min-width: 992px!important;">
+
+<div class="banner-products" style="box-sizing: border-box;">
+    <div class="container-fluid my-5 d-flex justify-content-center" style="box-sizing: border-box;width: 100%;padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;display: flex!important;-ms-flex-pack: center!important;justify-content: center!important;margin-top: 3rem!important;margin-bottom: 3rem!important;">
+        <div class="card card-1 my-4" style="box-sizing: border-box;position: relative;display: flex;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: .25rem;margin-top: 1.5rem!important;margin-bottom: 1.5rem!important;">
+            <div class="card-header bg-white" style="box-sizing: border-box;padding: .75rem 1.25rem;margin-bottom: 0;background-color: #fff!important;border-bottom: 1px solid rgba(0,0,0,.125);border-radius: calc(.25rem - 1px) calc(.25rem - 1px) 0 0;">
+                <div class="media flex-sm-row flex-column-reverse justify-content-between " style="box-sizing: border-box;display: flex;-ms-flex-align: start;align-items: flex-start;-ms-flex-direction: column-reverse!important;flex-direction: column-reverse!important;-ms-flex-pack: justify!important;justify-content: space-between!important;">
+                    <div class="col my-auto" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;margin-top: auto!important;margin-bottom: auto!important;">
+                        <h2 style="box-sizing: border-box;margin-top: 0;margin-bottom: .5rem;font-weight: 500;line-height: 1.2;font-size: 2rem;orphans: 3;widows: 3;page-break-after: avoid;">Hi {{ name }}, Your Order has been confirmed</h2>
+                        <h6 class="mb-0" style="box-sizing: border-box;margin-top: 0;margin-bottom: 0!important;font-weight: 500;line-height: 1.2;font-size: 1rem;">Order Reference # <span class="change-color" style="box-sizing: border-box;"> {{ order.reference }}</span>
+                        </h6>
+                    </div>
+                    <div class="col-auto text-center my-auto pl-0 pt-sm-4" style="box-sizing: border-box;position: relative;width: auto;padding-right: 15px;padding-left: 0!important;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;margin-top: auto!important;margin-bottom: auto!important;padding-top: 1.5rem!important;text-align: center!important;"><img class="img-fluid my-auto align-items-center mb-0 pt-3" src="{{ url_for('static', filename='imgs/almond_logo.png', _external=True) }}" width="115" height="115" style="box-sizing: border-box;vertical-align: middle;border-style: none;page-break-inside: avoid;max-width: 100%;height: auto;-ms-flex-align: center!important;align-items: center!important;margin-bottom: auto!important;padding-top: 1rem!important;margin-top: auto!important;">
+                    </div>
+                </div>
+            </div>
+            <div class="card-body" style="box-sizing: border-box;-ms-flex: 1 1 auto;flex: 1 1 auto;min-height: 1px;padding: 1.25rem;">
+                <div class="row justify-content-between mb-3" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;-ms-flex-pack: justify!important;justify-content: space-between!important;margin-bottom: 1rem!important;">
+                    <div class="col-auto" style="box-sizing: border-box;position: relative;width: auto;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;">
+                        <h6 class="color-1 mb-0 change-color" style="box-sizing: border-box;margin-top: 0;margin-bottom: 0!important;font-weight: 500;line-height: 1.2;font-size: 1rem;">Receipt</h6>
+                    </div>
+                    <div class="col-auto " style="box-sizing: border-box;position: relative;width: auto;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;">
+                        <mark class="bold change-color" style="box-sizing: border-box;padding: .2em;background-color: #fcf8e3;">Status: {{ order.status }}</mark>
+                    </div>
+                </div>
+                {% for item in order.items %}
+                <div class="row mt-4" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;margin-top: 1.5rem!important;">
+                    <div class="col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;">
+                        <div class="card card-2" style="box-sizing: border-box;position: relative;display: flex;-ms-flex-direction: column;flex-direction: column;min-width: 0;word-wrap: break-word;background-color: #fff;background-clip: border-box;border: 1px solid rgba(0,0,0,.125);border-radius: .25rem;">
+                            <div class="card-body" style="box-sizing: border-box;-ms-flex: 1 1 auto;flex: 1 1 auto;min-height: 1px;padding: 1.25rem;">
+                                <div class="media" style="box-sizing: border-box;display: flex;-ms-flex-align: start;align-items: flex-start;">
+                                    <div class="sq align-self-center " style="box-sizing: border-box;-ms-flex-item-align: center!important;align-self: center!important;"><img class="img-fluid my-auto align-self-center mr-2 mr-md-4 pl-0 p-0 m-0" src="{{ url_for('static', filename=item.product.image, _external=True) }}" style="width: 130px;height: 130px;box-sizing: border-box;vertical-align: middle;border-style: none;page-break-inside: avoid;max-width: 100%;-ms-flex-item-align: center!important;align-self: center!important;margin: 0!important;margin-right: 1.5rem!important;padding: 0!important;padding-left: 0!important;margin-top: auto!important;margin-bottom: auto!important;">
+                                    </div>
+                                    <div class="media-body my-auto text-right" style="box-sizing: border-box;-ms-flex: 1;flex: 1;margin-top: auto!important;margin-bottom: auto!important;text-align: right!important;">
+                                        <div class="row my-auto flex-column flex-md-row" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;-ms-flex-direction: column!important;flex-direction: column!important;margin-top: auto!important;margin-bottom: auto!important;">
+                                            <div class="col my-auto" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;margin-top: auto!important;margin-bottom: auto!important;">
+                                                <h6 class="mb-0" style="box-sizing: border-box;margin-top: 0;margin-bottom: 0!important;font-weight: 500;line-height: 1.2;font-size: 1rem;"> {{ item.product.name }}</h6>
+                                            </div>
+                                            <div class="col my-auto" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;margin-top: auto!important;margin-bottom: auto!important;"><small style="box-sizing: border-box;font-size: 80%;font-weight: 400;">Category: {{ item.product.category
+                                                }}</small>
+                                            </div>
+                                            <div class="col my-auto" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;margin-top: auto!important;margin-bottom: auto!important;"><small style="box-sizing: border-box;font-size: 80%;font-weight: 400;">Qty : {{ item.quantity }}</small></div>
+                                            <div class="col my-auto" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;margin-top: auto!important;margin-bottom: auto!important;">
+                                                <h6 class="mb-0" style="box-sizing: border-box;margin-top: 0;margin-bottom: 0!important;font-weight: 500;line-height: 1.2;font-size: 1rem;">&#8377; {{ item.product.price * item.quantity}}</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="row mt-4" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;margin-top: 1.5rem!important;">
+                    <div class="col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;">
+                        <div class="row justify-content-between" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;-ms-flex-pack: justify!important;justify-content: space-between!important;">
+                            <div class="col-auto" style="box-sizing: border-box;position: relative;width: auto;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;">
+                                <p class="mb-1 text-dark" style="box-sizing: border-box;margin-top: 0;margin-bottom: .25rem!important;orphans: 3;widows: 3;color: #343a40!important;"><b style="box-sizing: border-box;font-weight: bolder;">Order Details</b></p>
+                            </div>
+                            <div class="flex-sm-col text-right col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;text-align: right!important;">
+                                <p class="mb-1" style="box-sizing: border-box;margin-top: 0;margin-bottom: .25rem!important;orphans: 3;widows: 3;"><b style="box-sizing: border-box;font-weight: bolder;">Total</b></p>
+                            </div>
+                            <div class="flex-sm-col col-auto" style="box-sizing: border-box;position: relative;width: auto;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;">
+                                <p class="mb-1" style="box-sizing: border-box;margin-top: 0;margin-bottom: .25rem!important;orphans: 3;widows: 3;">&#8377;{{ order.order_total() }}</p>
+                            </div>
+                        </div>
+                        <div class="row justify-content-between" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;-ms-flex-pack: justify!important;justify-content: space-between!important;">
+                            <div class="flex-sm-col text-right col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;text-align: right!important;">
+                                <p class="mb-1" style="box-sizing: border-box;margin-top: 0;margin-bottom: .25rem!important;orphans: 3;widows: 3;"><b style="box-sizing: border-box;font-weight: bolder;">Delivery Charges</b></p>
+                            </div>
+                            <div class="flex-sm-col col-auto" style="box-sizing: border-box;position: relative;width: auto;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;">
+                                <p class="mb-1" style="box-sizing: border-box;margin-top: 0;margin-bottom: .25rem!important;orphans: 3;widows: 3;">
+                                    {% if order.order_total() - 100 > 100 %}
+                                    Free
+                                    {% else %}
+                                    &#8377;100
+                                    {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row invoice" style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;">
+                    <div class="col" style="box-sizing: border-box;position: relative;width: 100%;padding-right: 15px;padding-left: 15px;-ms-flex-preferred-size: 0;flex-basis: 0;-ms-flex-positive: 1;flex-grow: 1;max-width: 100%;">
+                        <br style="box-sizing: border-box;">
+                        <br style="box-sizing: border-box;">
+                        <p class="mb-1" style="box-sizing: border-box;margin-top: 0;margin-bottom: .25rem!important;orphans: 3;widows: 3;">{{ order.order_date.strftime('%b %d, %Y') }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer" style="box-sizing: border-box;padding: .75rem 1.25rem;background-color: rgba(0,0,0,.03);border-top: 1px solid rgba(0,0,0,.125);border-radius: 0 0 calc(.25rem - 1px) calc(.25rem - 1px);">
+                <div class="jumbotron-fluid" style="box-sizing: border-box;padding-right: 0;padding-left: 0;border-radius: 0;">
+                    <div class="row justify-content-between " style="box-sizing: border-box;display: flex;-ms-flex-wrap: wrap;flex-wrap: wrap;margin-right: -15px;margin-left: -15px;-ms-flex-pack: justify!important;justify-content: space-between!important;">
+                        <div class="col-auto my-auto " style="box-sizing: border-box;position: relative;width: auto;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;margin-top: auto!important;margin-bottom: auto!important;">
+                            <h2 class="mb-0 font-weight-bold" style="box-sizing: border-box;margin-top: 0;margin-bottom: 0!important;font-weight: 700!important;line-height: 1.2;font-size: 2rem;orphans: 3;widows: 3;page-break-after: avoid;">TOTAL PAID</h2>
+                        </div>
+                        <div class="col-auto my-auto ml-auto" style="box-sizing: border-box;position: relative;width: auto;padding-right: 15px;padding-left: 15px;-ms-flex: 0 0 auto;flex: 0 0 auto;max-width: 100%;margin-top: auto!important;margin-bottom: auto!important;margin-left: auto!important;">
+                            <h1 class="display-3 " style="box-sizing: border-box;margin-top: 0;margin-bottom: .5rem;font-weight: 300;line-height: 1.2;font-size: 4.5rem;">&#8377;
+                                {{ order.order_total() }}
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
