@@ -6,7 +6,6 @@ mail = Mail(app)
 
 
 def send_contact_email(name, email, message):
-    # rssmanoj@gmail.com
 
     # user_email = email
     user_email = 'wihapi2659@hmnmw.com'
@@ -21,7 +20,6 @@ def send_contact_email(name, email, message):
 
 
 def send_registration_email(user):
-    # rssmanoj@gmail.com
     request_url = app.config['REQUEST_URL']
     # user_email = user.email
     print(request_url)
@@ -35,7 +33,6 @@ def send_registration_email(user):
 
 
 def send_pay_confirmation_email(name, order, email):
-    # rssmanoj@gmail.com
     request_url = app.config['REQUEST_URL']
     # user_email = email
     print(request_url)
